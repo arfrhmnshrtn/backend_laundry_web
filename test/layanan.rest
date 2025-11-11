@@ -1,0 +1,31 @@
+GET http://localhost:5000/api/layanan
+Content-Type: application/json
+
+### tambah layanan baru
+POST http://localhost:5000/api/layanan
+Content-Type: application/json
+
+{
+  "nama_layanan": "Cuci Kering Kiloan",
+  "deskripsi": "Layanan cuci dan kering tanpa setrika",
+  "tipe_layanan": "Kiloan",
+  "harga": 5000,
+  "satuan_harga": "Kg",
+  "durasi": "2 hari"
+}
+
+### edit layanan
+PUT http://localhost:5000/api/layanan/11
+Content-Type: application/json
+
+{
+    "nama_layanan": "Cuci Basah Kiloan",
+    "deskripsi": "Layanan cuci dan basah tanpa setrika",
+    "tipe_layanan": "Kiloan",
+    "harga": 6000,
+    "satuan_harga": "Kg",
+    "durasi": "3 hari"
+}
+
+### hapus layanan
+DELETE http://localhost:5000/api/layanan/2

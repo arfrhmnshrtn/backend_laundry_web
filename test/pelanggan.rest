@@ -1,0 +1,19 @@
+GET http://localhost:5000/api/pelanggan
+
+### tambah pelanggan baru
+POST http://localhost:5000/api/pelanggan
+Content-Type: application/json
+
+{
+  "nama": "Arief Rachman",
+  "no_telp": "081234567890"
+}
+
+### edit pelanggan
+PUT http://localhost:5000/api/pelanggan/1
+Content-Type: application/json
+
+{
+  "nama": "Arief Rachman Sahertian",
+  "no_telp": "089876543210"
+}

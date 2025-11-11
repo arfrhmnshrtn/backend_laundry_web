@@ -1,0 +1,99 @@
+### 🔍 Ambil semua transaksi
+GET http://localhost:5000/api/transaksi
+Content-Type: application/json
+
+
+### 🔍 Ambil transaksi berdasarkan ID (misal id = 1)
+GET http://localhost:5000/api/transaksi/1
+Content-Type: application/json
+
+
+### ➕ Tambah transaksi baru beserta detail (Pelanggan Existing)
+POST http://localhost:5000/api/transaksi
+Content-Type: application/json
+
+{
+  "pelanggan_id": 6,
+  "tanggal_masuk": "2025-11-08",
+  "tanggal_selesai": "2025-11-10",
+  "pembayaran_status": "Bayar Awal",
+  "detail": [
+    { "layanan_id": 12, "berat": 3 }
+  ]
+}
+
+
+### ➕ Tambah transaksi dengan PELANGGAN MANUAL (TIDAK disimpan ke database)
+POST http://localhost:5000/api/transaksi
+Content-Type: application/json
+
+{
+  "nama_pelanggan": "Johncena",
+  "no_telp_pelanggan": "08123456789",
+  "simpan_pelanggan": true,
+  "tanggal_masuk": "2025-11-10",
+  "tanggal_selesai": "2025-11-12",
+  "pembayaran_awal": 25000,
+  "pembayaran_status": "Bayar Awal",
+  "status": "Pending",
+  "detail": [
+    { "layanan_id": 12, "berat": 10 }
+  ]
+}
+
+
+### ➕ Tambah transaksi dengan PELANGGAN MANUAL (DISIMPAN ke database)
+POST http://localhost:5000/api/transaksi
+Content-Type: application/json
+
+{
+  "nama_pelanggan": "Jane Smith",
+  "no_telp_pelanggan": "08987654321",
+  "simpan_pelanggan": true,
+  "tanggal_masuk": "2025-11-10",
+  "tanggal_selesai": "2025-11-13",
+  "pembayaran_awal": 50000,
+  "pembayaran_status": "DP",
+  "status": "Pending",
+  "detail": [
+    { "layanan_id": 12, "berat": 5 }
+  ]
+}
+
+
+### ❌ TEST VALIDASI: Tambah transaksi dengan NO TELEPON yang SUDAH ADA (harus GAGAL)
+# Gunakan nomor telepon yang sudah terdaftar di database untuk test validasi
+POST http://localhost:5000/api/transaksi
+Content-Type: application/json
+
+{
+  "nama_pelanggan": "Test Duplikat",
+  "no_telp_pelanggan": "08123456789",
+  "simpan_pelanggan": true,
+  "tanggal_masuk": "2025-11-10",
+  "tanggal_selesai": "2025-11-12",
+  "pembayaran_awal": 25000,
+  "pembayaran_status": "DP",
+  "status": "Pending",
+  "detail": [
+    { "layanan_id": 12, "berat": 5 }
+  ]
+}
+
+
+
+
+
+### ✏️ Update transaksi (misal ubah status jadi Selesai)
+PUT http://localhost:5000/api/transaksi/47
+Content-Type: application/json
+
+{
+  "status": "Selesai",
+  "pembayaran_status": "Lunas"
+}
+
+
+### ❌ Hapus transaksi berdasarkan ID
+DELETE http://localhost:5000/api/transaksi/1
+Content-Type: application/json

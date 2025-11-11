@@ -1,0 +1,82 @@
+### Variables
+@baseUrl = http://localhost:5000
+@apiUrl = {{baseUrl}}/api/admin/auth
+@token = 
+
+### Health Check
+GET {{baseUrl}}/health
+
+### Welcome Message
+GET {{baseUrl}}/
+
+###############################################
+# Admin Authentication Tests
+###############################################
+
+### test api
+GET http://localhost:5000/health
+Content-Type: application/json
+
+### 1. Register New Admin
+POST http://localhost:5000/api/admin/auth/register
+Content-Type: application/json
+
+{
+  "username": "arief",
+  "password": "123456"
+}
+
+### 2. Register Admin - Missing Fields (Should Fail)
+POST {{apiUrl}}/register
+Content-Type: application/json
+
+{
+  "username": "testadmin"
+}
+
+### 3. Register Admin - Short Password (Should Fail)
+POST {{apiUrl}}/register
+Content-Type: application/json
+
+{
+  "username": "testadmin2",
+  "password": "123"
+}
+
+### 4. Login Admin - Success
+# @name loginAdmin
+POST {{apiUrl}}/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+### 5. Login Admin - Wrong Password (Should Fail)
+POST {{apiUrl}}/login
+Content-Type: application/json
+
+{
+  "username": "arie1f",
+  "password": "1234567"
+}
+
+### 6. Login Admin - User Not Found (Should Fail)
+POST {{apiUrl}}/login
+Content-Type: application/json
+
+{
+  "username": "nonexistentuser",
+  "password": "password123"
+}
+
+### 7. Login Admin - Missing Fields (Should Fail)
+POST {{apiUrl}}/login
+Content-Type: application/json
+
+{
+  "username": "admin"
+}
+
+
