@@ -67,8 +67,8 @@ POST {{apiUrl}}/login
 Content-Type: application/json
 
 {
-  "username": "nonexistentuser",
-  "password": "password123"
+  "username": "admin",
+  "password": "admin"
 }
 
 ### 7. Login Admin - Missing Fields (Should Fail)
